@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6vqynede46h"]
+
+[ext_resource type="PackedScene" uid="uid://7y8ncrd7650w" path="res://Scenes/ChunkyTank.tscn" id="1_05p5l"]
+[ext_resource type="Script" path="res://Scenes/Player.gd" id="1_btqsg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i543m"]
+size = Vector3(3, 2, 3)
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_btqsg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_i543m")
+
+[node name="ChunkyTank" parent="." instance=ExtResource("1_05p5l")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+current = true
