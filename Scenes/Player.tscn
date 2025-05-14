@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_i543m"]
 size = Vector3(3, 2, 3)
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_btqsg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

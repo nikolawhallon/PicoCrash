@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyumk4utq1wmi"]
+
+[ext_resource type="ArrayMesh" uid="uid://bgsricnev8che" path="res://Assets/Jidouhanbaiki/jidouhanbaiki.obj" id="1_1c88s"]
+[ext_resource type="Texture2D" uid="uid://dilqt2fqwm4ca" path="res://Assets/Jidouhanbaiki/jidouhanbaiki_tex.png" id="2_i0wn0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cbbd6"]
+albedo_texture = ExtResource("2_i0wn0")
+texture_filter = 0
+
+[node name="Jidouhanbaiki" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.313306, 1.19209e-07, 0.547751)
+mesh = ExtResource("1_1c88s")
+surface_material_override/0 = SubResource("StandardMaterial3D_cbbd6")

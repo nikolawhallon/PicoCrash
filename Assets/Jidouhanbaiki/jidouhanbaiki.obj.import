@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bgsricnev8che"
+path="res://.godot/imported/jidouhanbaiki.obj-e6027bbf1cbcbde15c56813e2b19fd8a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/jidouhanbaiki.obj-e6027bbf1cbcbde15c56813e2b19fd8a.mesh"]
+
+source_file="res://Assets/Jidouhanbaiki/jidouhanbaiki.obj"
+dest_files=["res://.godot/imported/jidouhanbaiki.obj-e6027bbf1cbcbde15c56813e2b19fd8a.mesh", "res://.godot/imported/jidouhanbaiki.obj-e6027bbf1cbcbde15c56813e2b19fd8a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

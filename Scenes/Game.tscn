@@ -1,19 +1,25 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs0el2tpjn2o1"]
+[gd_scene load_steps=11 format=3 uid="uid://cs0el2tpjn2o1"]
 
 [ext_resource type="PackedScene" uid="uid://b6vqynede46h" path="res://Scenes/Player.tscn" id="1_eugso"]
+[ext_resource type="Shader" path="res://Scenes/Sky.gdshader" id="1_f68dk"]
 [ext_resource type="Material" uid="uid://j58kram08j1l" path="res://Resources/Tile.tres" id="1_x2ywt"]
+[ext_resource type="PackedScene" uid="uid://cyumk4utq1wmi" path="res://Scenes/Jidouhanbaiki.tscn" id="2_ub58m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8opph"]
+shader = ExtResource("1_f68dk")
+
+[sub_resource type="Sky" id="Sky_hdde8"]
+sky_material = SubResource("ShaderMaterial_8opph")
 
 [sub_resource type="Environment" id="Environment_jqaff"]
-ambient_light_source = 3
+background_mode = 2
+sky = SubResource("Sky_hdde8")
+ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
 
-[sub_resource type="BoxMesh" id="BoxMesh_ln5ww"]
-material = ExtResource("1_x2ywt")
-size = Vector3(10, 10, 10)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_skawq"]
-size = Vector3(10, 10, 10)
+size = Vector3(7, 8, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7v1f"]
 size = Vector3(100, 1, 100)
@@ -28,13 +34,12 @@ size = Vector3(100, 1, 100)
 environment = SubResource("Environment_jqaff")
 
 [node name="Building" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Building"]
-mesh = SubResource("BoxMesh_ln5ww")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Building"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 shape = SubResource("BoxShape3D_skawq")
+
+[node name="Jidouhanbaiki" parent="Building" instance=ExtResource("2_ub58m")]
 
 [node name="Ground" type="StaticBody3D" parent="."]
 

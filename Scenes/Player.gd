@@ -25,6 +25,12 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 	
 	move_and_slide()
+	
+	for i in get_slide_collision_count() - 1:
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		#if collider.is_in_group("Player"):
+		#	set_visible(false)
 
 	# move and reposition the camera w.r.t. the player's position
 	if Input.is_action_pressed(str("p", player, "_l")):
