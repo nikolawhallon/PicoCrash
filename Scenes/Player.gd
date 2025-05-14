@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export var player: int = 1
+
 const SPEED = 10.0
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -10,7 +12,7 @@ func _physics_process(delta):
 	#	velocity.y -= gravity * delta
 
 	# move the player based on the input and the camera position/angle
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector(str("p", player, "_left"), str("p", player, "_right"), str("p", player, "_up"), str("p", player, "_down"))
 	input_dir = input_dir.rotated(-camera_model_angle)
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
@@ -25,9 +27,9 @@ func _physics_process(delta):
 	move_and_slide()
 
 	# move and reposition the camera w.r.t. the player's position
-	if Input.is_key_pressed(KEY_A):
+	if Input.is_action_pressed(str("p", player, "_l")):
 		camera_model_angle += 2 * delta
-	if Input.is_key_pressed(KEY_D):
+	if Input.is_action_pressed(str("p", player, "_r")):
 		camera_model_angle -= 2 * delta
 
 	$Camera3D.global_position = global_position + 10 * Vector3(sin(camera_model_angle), 0, cos(camera_model_angle))

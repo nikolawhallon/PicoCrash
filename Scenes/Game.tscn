@@ -1,29 +1,40 @@
-[gd_scene load_steps=7 format=3 uid="uid://cs0el2tpjn2o1"]
+[gd_scene load_steps=8 format=3 uid="uid://cs0el2tpjn2o1"]
 
 [ext_resource type="PackedScene" uid="uid://b6vqynede46h" path="res://Scenes/Player.tscn" id="1_eugso"]
-[ext_resource type="Texture2D" uid="uid://dlunx3g2echb6" path="res://Assets/tile.png" id="2_2xyxd"]
+[ext_resource type="Material" uid="uid://j58kram08j1l" path="res://Resources/Tile.tres" id="1_x2ywt"]
 
 [sub_resource type="Environment" id="Environment_jqaff"]
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
 
+[sub_resource type="BoxMesh" id="BoxMesh_ln5ww"]
+material = ExtResource("1_x2ywt")
+size = Vector3(10, 10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_skawq"]
+size = Vector3(10, 10, 10)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7v1f"]
 size = Vector3(100, 1, 100)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58eir"]
-albedo_texture = ExtResource("2_2xyxd")
-uv1_scale = Vector3(100, 100, 100)
-texture_filter = 0
-
 [sub_resource type="BoxMesh" id="BoxMesh_rwigu"]
-material = SubResource("StandardMaterial3D_58eir")
+material = ExtResource("1_x2ywt")
 size = Vector3(100, 1, 100)
 
 [node name="Game" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jqaff")
+
+[node name="Building" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Building"]
+mesh = SubResource("BoxMesh_ln5ww")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Building"]
+shape = SubResource("BoxShape3D_skawq")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -43,7 +54,7 @@ size = Vector2i(320, 240)
 render_target_update_mode = 4
 
 [node name="Player" parent="P1SubViewportContainer/SubViewport" instance=ExtResource("1_eugso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 10)
 
 [node name="P2SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = 320.0
@@ -57,6 +68,7 @@ render_target_update_mode = 4
 
 [node name="Player" parent="P2SubViewportContainer/SubViewport" instance=ExtResource("1_eugso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 10)
+player = 2
 
 [node name="P3SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_top = 240.0
@@ -70,6 +82,7 @@ render_target_update_mode = 4
 
 [node name="Player" parent="P3SubViewportContainer/SubViewport" instance=ExtResource("1_eugso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -10)
+player = 3
 
 [node name="P4SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = 320.0
@@ -84,3 +97,4 @@ render_target_update_mode = 4
 
 [node name="Player" parent="P4SubViewportContainer/SubViewport" instance=ExtResource("1_eugso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, -10)
+player = 4
