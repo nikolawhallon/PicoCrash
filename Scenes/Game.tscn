@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cs0el2tpjn2o1"]
+[gd_scene load_steps=12 format=3 uid="uid://cs0el2tpjn2o1"]
 
 [ext_resource type="PackedScene" uid="uid://b6vqynede46h" path="res://Scenes/Player.tscn" id="1_eugso"]
 [ext_resource type="Shader" path="res://Scenes/Sky.gdshader" id="1_f68dk"]
 [ext_resource type="Material" uid="uid://j58kram08j1l" path="res://Resources/Tile.tres" id="1_x2ywt"]
 [ext_resource type="PackedScene" uid="uid://cyumk4utq1wmi" path="res://Scenes/Jidouhanbaiki.tscn" id="2_ub58m"]
+[ext_resource type="PackedScene" uid="uid://smivf6188fnv" path="res://Scenes/Warning.tscn" id="5_m4wlv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8opph"]
 shader = ExtResource("1_f68dk")
@@ -24,9 +25,9 @@ size = Vector3(7, 8, 4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7v1f"]
 size = Vector3(100, 1, 100)
 
-[sub_resource type="BoxMesh" id="BoxMesh_rwigu"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_81kok"]
 material = ExtResource("1_x2ywt")
-size = Vector3(100, 1, 100)
+size = Vector2(100, 100)
 
 [node name="Game" type="Node3D"]
 
@@ -47,7 +48,7 @@ shape = SubResource("BoxShape3D_skawq")
 shape = SubResource("BoxShape3D_c7v1f")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-mesh = SubResource("BoxMesh_rwigu")
+mesh = SubResource("PlaneMesh_81kok")
 
 [node name="P1SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_right = 40.0
@@ -103,3 +104,6 @@ render_target_update_mode = 4
 [node name="Player" parent="P4SubViewportContainer/SubViewport" instance=ExtResource("1_eugso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, -10)
 player = 4
+
+[node name="Warning" parent="." instance=ExtResource("5_m4wlv")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 1, 50)
