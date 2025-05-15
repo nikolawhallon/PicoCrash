@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://smivf6188fnv"]
+[gd_scene load_steps=5 format=3 uid="uid://smivf6188fnv"]
 
 [ext_resource type="ArrayMesh" uid="uid://d3kwvu8i5l0vy" path="res://Assets/Warning/warning.obj" id="1_srivd"]
 [ext_resource type="Texture2D" uid="uid://ckbuvtnfxavv7" path="res://Assets/Warning/warning_tex.png" id="2_pcjn2"]
@@ -7,9 +7,15 @@
 albedo_texture = ExtResource("2_pcjn2")
 texture_filter = 0
 
-[node name="Warning" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ggkp7"]
+size = Vector3(4, 4, 6)
+
+[node name="Warning" type="StaticBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.905439, 0, -0.345778)
 mesh = ExtResource("1_srivd")
 surface_material_override/0 = SubResource("StandardMaterial3D_1dvne")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_ggkp7")

@@ -1,10 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://cs0el2tpjn2o1"]
+[gd_scene load_steps=14 format=3 uid="uid://cs0el2tpjn2o1"]
 
+[ext_resource type="Script" path="res://Scenes/Game.gd" id="1_2ufdx"]
 [ext_resource type="PackedScene" uid="uid://b6vqynede46h" path="res://Scenes/Player.tscn" id="1_eugso"]
 [ext_resource type="Shader" path="res://Scenes/Sky.gdshader" id="1_f68dk"]
 [ext_resource type="Material" uid="uid://j58kram08j1l" path="res://Resources/Tile.tres" id="1_x2ywt"]
 [ext_resource type="PackedScene" uid="uid://cyumk4utq1wmi" path="res://Scenes/Jidouhanbaiki.tscn" id="2_ub58m"]
+[ext_resource type="Script" path="res://Scenes/PlayerSubViewport.gd" id="5_dp6k2"]
 [ext_resource type="PackedScene" uid="uid://smivf6188fnv" path="res://Scenes/Warning.tscn" id="5_m4wlv"]
+[ext_resource type="LabelSettings" uid="uid://b2pxnop0iphr1" path="res://Resources/LabelSettings.tres" id="6_h52wy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8opph"]
 shader = ExtResource("1_f68dk")
@@ -19,9 +22,6 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_skawq"]
-size = Vector3(7, 8, 4)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7v1f"]
 size = Vector3(100, 1, 100)
 
@@ -30,17 +30,13 @@ material = ExtResource("1_x2ywt")
 size = Vector2(100, 100)
 
 [node name="Game" type="Node3D"]
+script = ExtResource("1_2ufdx")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jqaff")
 
-[node name="Building" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Building"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-shape = SubResource("BoxShape3D_skawq")
-
-[node name="Jidouhanbaiki" parent="Building" instance=ExtResource("2_ub58m")]
+[node name="Jidouhanbaiki" parent="." instance=ExtResource("2_ub58m")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Ground" type="StaticBody3D" parent="."]
 
@@ -53,11 +49,25 @@ mesh = SubResource("PlaneMesh_81kok")
 [node name="P1SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("5_dp6k2")
 
 [node name="SubViewport" type="SubViewport" parent="P1SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(320, 240)
 render_target_update_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="P1SubViewportContainer/SubViewport"]
+offset_right = 61.0
+offset_bottom = 23.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+
+[node name="Label" type="Label" parent="P1SubViewportContainer/SubViewport/MarginContainer"]
+layout_mode = 2
+text = "SCORE 0"
+label_settings = ExtResource("6_h52wy")
 
 [node name="Player" parent="P1SubViewportContainer/SubViewport" instance=ExtResource("1_eugso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 10)
@@ -66,11 +76,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 10)
 offset_left = 320.0
 offset_right = 640.0
 offset_bottom = 240.0
+script = ExtResource("5_dp6k2")
 
 [node name="SubViewport" type="SubViewport" parent="P2SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(320, 240)
 render_target_update_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="P2SubViewportContainer/SubViewport"]
+offset_right = 80.0
+offset_bottom = 24.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+
+[node name="Label" type="Label" parent="P2SubViewportContainer/SubViewport/MarginContainer"]
+layout_mode = 2
+text = "SCORE 0"
+label_settings = ExtResource("6_h52wy")
 
 [node name="Player" parent="P2SubViewportContainer/SubViewport" instance=ExtResource("1_eugso")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 10)
@@ -105,5 +127,26 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, -10)
 player = 4
 
+[node name="Jidouhanbaiki2" parent="." instance=ExtResource("2_ub58m")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 10)
+
+[node name="Jidouhanbaiki3" parent="." instance=ExtResource("2_ub58m")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 0, -10)
+
+[node name="Jidouhanbaiki4" parent="." instance=ExtResource("2_ub58m")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25, 0, 0)
+
 [node name="Warning" parent="." instance=ExtResource("5_m4wlv")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 1, 50)
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -46.5, 0.5, 46.5)
+
+[node name="Warning2" parent="." instance=ExtResource("5_m4wlv")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 46.5, 0.5, 46.5)
+
+[node name="Warning3" parent="." instance=ExtResource("5_m4wlv")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 46.5, 0.5, -46.5)
+
+[node name="Warning4" parent="." instance=ExtResource("5_m4wlv")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -46.5, 0.5, -46.5)
+
+[connection signal="score_changed" from="P1SubViewportContainer/SubViewport/Player" to="P1SubViewportContainer" method="_on_player_score_changed"]
+[connection signal="score_changed" from="P2SubViewportContainer/SubViewport/Player" to="P2SubViewportContainer" method="_on_player_score_changed"]

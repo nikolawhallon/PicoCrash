@@ -1,15 +1,27 @@
 extends CharacterBody3D
 
+signal score_changed(score)
+
 @export var player: int = 1
 
 const SPEED = 10.0
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera_model_angle = 0
+var score = 0
 
 func _physics_process(delta):
-	#if not is_on_floor():
-	#	velocity.y -= gravity * delta
+	if Input.is_action_just_pressed(str("p", player, "_fire")):
+		var bepis = load("res://Scenes/Bepis.tscn").instantiate()
+		bepis.global_position = global_position + 4 * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
+		bepis.velocity = bepis.SPEED * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
+		bepis.rotation.z = PI / 2
+		bepis.rotation.y = $ChunkyTank.rotation.y + PI / 2
+		bepis.origin = self
+		get_tree().get_root().add_child(bepis)
+	
+	if not is_on_floor():
+		velocity.y -= gravity * delta
 
 	# move the player based on the input and the camera position/angle
 	var input_dir = Input.get_vector(str("p", player, "_left"), str("p", player, "_right"), str("p", player, "_up"), str("p", player, "_down"))
@@ -43,3 +55,7 @@ func _physics_process(delta):
 	var dx = global_position.x - $Camera3D.global_position.x
 	var dz = global_position.z - $Camera3D.global_position.z
 	$Camera3D.rotation.y = -atan2(dx, -dz)
+
+func increase_score(increment):
+	score += increment
+	score_changed.emit(score)
