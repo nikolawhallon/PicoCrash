@@ -34,76 +34,76 @@ func _ready():
 	var player_num = 2
 	
 	if player_num == 2:
-		var player1 = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
-		player1.player = 1
-		player1.size = Vector2(640, 240)
-		player1.get_node("SubViewport").size = Vector2(640, 240)
-		player1.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 20)
-		add_child(player1)
+		var p1_sub_viewport = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
+		p1_sub_viewport.player = 1
+		p1_sub_viewport.size = Vector2(640, 240)
+		p1_sub_viewport.get_node("SubViewport").size = Vector2(640, 240)
+		p1_sub_viewport.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 20)
+		add_child(p1_sub_viewport)
 
-		var player2 = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
-		player2.player = 2
-		player2.size = Vector2(640, 240)
-		player2.get_node("SubViewport").size = Vector2(640, 240)
-		player2.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 15)
-		player2.position = Vector2(0, 240)
-		add_child(player2)
+		var p2_sub_viewport = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
+		p2_sub_viewport.player = 2
+		p2_sub_viewport.size = Vector2(640, 240)
+		p2_sub_viewport.get_node("SubViewport").size = Vector2(640, 240)
+		p2_sub_viewport.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 15)
+		p2_sub_viewport.position = Vector2(0, 240)
+		add_child(p2_sub_viewport)
 
 	if player_num == 3:
-		var player1 = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
-		player1.player = 1
-		player1.size = Vector2(320, 240)
-		player1.get_node("SubViewport").size = Vector2(320, 240)
-		player1.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 20)
-		add_child(player1)
+		var p1_sub_viewport = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
+		p1_sub_viewport.player = 1
+		p1_sub_viewport.size = Vector2(320, 240)
+		p1_sub_viewport.get_node("SubViewport").size = Vector2(320, 240)
+		p1_sub_viewport.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 20)
+		add_child(p1_sub_viewport)
 
-		var player2 = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
-		player2.player = 2
-		player2.size = Vector2(320, 240)
-		player2.get_node("SubViewport").size = Vector2(320, 240)
-		player2.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 15)
-		player2.position = Vector2(320, 0)
-		add_child(player2)
+		var p2_sub_viewport = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
+		p2_sub_viewport.player = 2
+		p2_sub_viewport.size = Vector2(320, 240)
+		p2_sub_viewport.get_node("SubViewport").size = Vector2(320, 240)
+		p2_sub_viewport.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 15)
+		p2_sub_viewport.position = Vector2(320, 0)
+		add_child(p2_sub_viewport)
 
-		var player3 = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
-		player3.player = 3
-		player3.size = Vector2(320, 240)
-		player3.get_node("SubViewport").size = Vector2(320, 240)
-		player3.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 10)
-		player3.position = Vector2(0, 240)
-		add_child(player3)
+		var p3_sub_viewport = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
+		p3_sub_viewport.player = 3
+		p3_sub_viewport.size = Vector2(320, 240)
+		p3_sub_viewport.get_node("SubViewport").size = Vector2(320, 240)
+		p3_sub_viewport.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 10)
+		p3_sub_viewport.position = Vector2(0, 240)
+		add_child(p3_sub_viewport)
 
 	if player_num == 4:
-		var player1 = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
-		player1.player = 1
-		player1.size = Vector2(320, 240)
-		player1.get_node("SubViewport").size = Vector2(320, 240)
-		player1.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 20)
-		add_child(player1)
+		var p1_sub_viewport = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
+		p1_sub_viewport.player = 1
+		p1_sub_viewport.size = Vector2(320, 240)
+		p1_sub_viewport.get_node("SubViewport").size = Vector2(320, 240)
+		p1_sub_viewport.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 20)
+		add_child(p1_sub_viewport)
 
-		var player2 = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
-		player2.player = 2
-		player2.size = Vector2(320, 240)
-		player2.get_node("SubViewport").size = Vector2(320, 240)
-		player2.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 15)
-		player2.position = Vector2(320, 0)
-		add_child(player2)
+		var p2_sub_viewport = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
+		p2_sub_viewport.player = 2
+		p2_sub_viewport.size = Vector2(320, 240)
+		p2_sub_viewport.get_node("SubViewport").size = Vector2(320, 240)
+		p2_sub_viewport.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 15)
+		p2_sub_viewport.position = Vector2(320, 0)
+		add_child(p2_sub_viewport)
 
-		var player3 = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
-		player3.player = 3
-		player3.size = Vector2(320, 240)
-		player3.get_node("SubViewport").size = Vector2(320, 240)
-		player3.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 10)
-		player3.position = Vector2(0, 240)
-		add_child(player3)
+		var p3_sub_viewport = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
+		p3_sub_viewport.player = 3
+		p3_sub_viewport.size = Vector2(320, 240)
+		p3_sub_viewport.get_node("SubViewport").size = Vector2(320, 240)
+		p3_sub_viewport.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 10)
+		p3_sub_viewport.position = Vector2(0, 240)
+		add_child(p3_sub_viewport)
 		
-		var player4 = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
-		player4.player = 4
-		player4.size = Vector2(320, 240)
-		player4.get_node("SubViewport").size = Vector2(320, 240)
-		player4.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 5)
-		player4.position = Vector2(320, 240)
-		add_child(player4)
+		var p4_sub_viewport = load("res://Scenes/PlayerSubViewport.tscn").instantiate()
+		p4_sub_viewport.player = 4
+		p4_sub_viewport.size = Vector2(320, 240)
+		p4_sub_viewport.get_node("SubViewport").size = Vector2(320, 240)
+		p4_sub_viewport.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 5)
+		p4_sub_viewport.position = Vector2(320, 240)
+		add_child(p4_sub_viewport)
 	
 func _process(delta):
 	pass

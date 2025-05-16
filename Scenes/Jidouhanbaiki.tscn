@@ -10,7 +10,7 @@ texture_filter = 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_kmhxc"]
 size = Vector3(9, 10, 5)
 
-[node name="Jidouhanbaiki" type="StaticBody3D"]
+[node name="Jidouhanbaiki" type="StaticBody3D" groups=["Jidouhanbaiki"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_1c88s")

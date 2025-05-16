@@ -1,24 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://w5vvibautxut"]
+[gd_scene load_steps=6 format=3 uid="uid://byvki4gdvkyrg"]
 
-[ext_resource type="Script" path="res://Scenes/Can.gd" id="1_0xhdn"]
-[ext_resource type="ArrayMesh" uid="uid://ddqe7l66lmihi" path="res://Assets/Bepis/bepis.obj" id="2_ki6nc"]
-[ext_resource type="Texture2D" uid="uid://di3ja3s6brtgj" path="res://Assets/Bepis/bepis_tex.png" id="3_dfuat"]
+[ext_resource type="Script" path="res://Scenes/Can.gd" id="1_lcns4"]
+[ext_resource type="ArrayMesh" uid="uid://5kr60au4oppl" path="res://Assets/Conke/conke.obj" id="1_m3676"]
+[ext_resource type="Texture2D" uid="uid://dawqcia2m0o61" path="res://Assets/Conke/conke_tex.png" id="2_kxpww"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_24nk6"]
-albedo_texture = ExtResource("3_dfuat")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_caj4x"]
+albedo_texture = ExtResource("2_kxpww")
 texture_filter = 0
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_i6u35"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3xyjq"]
 points = PackedVector3Array(-1, -0.000367075, -0.500204, -1, -0.000367075, 0.499931, -1, 3.49998, -0.500204, -0.250196, -0.000367075, -1.25, -0.500049, -0.5, -0.500204, -0.250196, -0.000367075, 1.24997, -1, 3.49998, 0.499931, -0.500049, -0.5, 0.499931, -0.750147, 3.75, -0.500204, -0.250196, 3.49998, -1.25, 0.749951, -0.000367075, -1.25, -0.250196, -0.5, -0.750055, 0.749951, -0.000367075, 1.24997, -0.250196, 3.49998, 1.24997, -0.250196, -0.5, 0.749782, -0.750147, 3.75, 0.499931, -0.250196, 3.75, -1.00015, 0.749951, 3.49998, -1.25, 1.5, -0.000367075, -0.500204, 0.749951, -0.5, -0.750055, 1.5, -0.000367075, 0.499931, 0.749951, 3.49998, 1.24997, 0.749951, -0.5, 0.749782, -0.250196, 3.75, 0.999877, 0.749951, 3.75, -1.00015, 1.5, 3.49998, -0.500204, 0.999804, -0.5, -0.500204, 1.5, 3.49998, 0.499931, 0.999804, -0.5, 0.499931, 0.749951, 3.75, 0.999877, 1.2499, 3.75, -0.500204, 1.2499, 3.75, 0.499931)
 
-[node name="Bepis" type="Area3D" groups=["Bepis"]]
-script = ExtResource("1_0xhdn")
+[node name="Conke" type="Area3D"]
+script = ExtResource("1_lcns4")
 
-[node name="Bepis" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_ki6nc")
-surface_material_override/0 = SubResource("StandardMaterial3D_24nk6")
+[node name="Conke" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_m3676")
+surface_material_override/0 = SubResource("StandardMaterial3D_caj4x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_i6u35")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+shape = SubResource("ConvexPolygonShape3D_3xyjq")
