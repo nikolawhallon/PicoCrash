@@ -1,14 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cs0el2tpjn2o1"]
+[gd_scene load_steps=11 format=3 uid="uid://cs0el2tpjn2o1"]
 
 [ext_resource type="Script" path="res://Scenes/Game.gd" id="1_2ufdx"]
-[ext_resource type="PackedScene" uid="uid://b6vqynede46h" path="res://Scenes/Player.tscn" id="1_eugso"]
 [ext_resource type="Shader" path="res://Scenes/Sky.gdshader" id="1_f68dk"]
 [ext_resource type="Material" uid="uid://j58kram08j1l" path="res://Resources/Tile.tres" id="1_x2ywt"]
 [ext_resource type="PackedScene" uid="uid://cyumk4utq1wmi" path="res://Scenes/Jidouhanbaiki.tscn" id="2_ub58m"]
-[ext_resource type="Script" path="res://Scenes/PlayerSubViewport.gd" id="5_dp6k2"]
 [ext_resource type="PackedScene" uid="uid://smivf6188fnv" path="res://Scenes/Warning.tscn" id="5_m4wlv"]
-[ext_resource type="LabelSettings" uid="uid://b2pxnop0iphr1" path="res://Resources/LabelSettings.tres" id="6_h52wy"]
-[ext_resource type="Texture2D" uid="uid://dm36twtkw2t64" path="res://Assets/conke_icon.png" id="7_kvpol"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8opph"]
 shader = ExtResource("1_f68dk")
@@ -47,96 +43,6 @@ shape = SubResource("BoxShape3D_c7v1f")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
 mesh = SubResource("PlaneMesh_81kok")
 
-[node name="P1SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-script = ExtResource("5_dp6k2")
-
-[node name="SubViewport" type="SubViewport" parent="P1SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(320, 240)
-render_target_update_mode = 4
-
-[node name="MarginContainer" type="MarginContainer" parent="P1SubViewportContainer/SubViewport"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 39.0
-grow_horizontal = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-
-[node name="HBoxContainer" type="HBoxContainer" parent="P1SubViewportContainer/SubViewport/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="P1SubViewportContainer/SubViewport/MarginContainer/HBoxContainer"]
-layout_mode = 2
-text = "SCORE 0"
-label_settings = ExtResource("6_h52wy")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="P1SubViewportContainer/SubViewport/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_constants/separation = 0
-
-[node name="TextureRect" type="TextureRect" parent="P1SubViewportContainer/SubViewport/MarginContainer/HBoxContainer2"]
-layout_mode = 2
-texture = ExtResource("7_kvpol")
-
-[node name="Label" type="Label" parent="P1SubViewportContainer/SubViewport/MarginContainer/HBoxContainer2"]
-layout_mode = 2
-text = " 10"
-label_settings = ExtResource("6_h52wy")
-
-[node name="Player" parent="P1SubViewportContainer/SubViewport" instance=ExtResource("1_eugso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 10)
-
-[node name="P2SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_left = 320.0
-offset_right = 640.0
-offset_bottom = 240.0
-script = ExtResource("5_dp6k2")
-
-[node name="SubViewport" type="SubViewport" parent="P2SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(320, 240)
-render_target_update_mode = 4
-
-[node name="Player" parent="P2SubViewportContainer/SubViewport" instance=ExtResource("1_eugso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, 10)
-player = 2
-
-[node name="P3SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_top = 240.0
-offset_right = 320.0
-offset_bottom = 480.0
-
-[node name="SubViewport" type="SubViewport" parent="P3SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(320, 240)
-render_target_update_mode = 4
-
-[node name="Player" parent="P3SubViewportContainer/SubViewport" instance=ExtResource("1_eugso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 2, -10)
-player = 3
-
-[node name="P4SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_left = 320.0
-offset_top = 240.0
-offset_right = 640.0
-offset_bottom = 480.0
-
-[node name="SubViewport" type="SubViewport" parent="P4SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(320, 240)
-render_target_update_mode = 4
-
-[node name="Player" parent="P4SubViewportContainer/SubViewport" instance=ExtResource("1_eugso")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, -10)
-player = 4
-
 [node name="Jidouhanbaiki2" parent="." instance=ExtResource("2_ub58m")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 10)
 
@@ -157,5 +63,3 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 
 [node name="Warning4" parent="." instance=ExtResource("5_m4wlv")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -46.5, 0.5, -46.5)
-
-[connection signal="score_changed" from="P1SubViewportContainer/SubViewport/Player" to="P1SubViewportContainer" method="_on_player_score_changed"]
