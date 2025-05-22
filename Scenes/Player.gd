@@ -18,6 +18,8 @@ var health = 3
 var conkes = 0
 var bepises = 0
 var minteses = 0
+var invincible = false
+var flash_counter = 0
 
 func reset():
 	health = 3
@@ -30,10 +32,23 @@ func reset():
 	emit_signal("conkes_changed", conkes)
 	emit_signal("bepises_changed", bepises)
 	emit_signal("minteses_changed", bepises)
-		
+	become_invincible()
+	visible = true
+
+func become_invincible():
+	if $InvincibilityTimer.is_stopped() and invincible == false:
+		invincible = true
+		$InvincibilityTimer.start()
+
 func _physics_process(delta):
 	if health <= 0:
 		return
+
+	if invincible:
+		flash_counter += 1
+		if flash_counter >= 10:
+			visible = !visible
+			flash_counter = 0
 
 	if Input.is_action_just_pressed(str("p", player, "_fire_conke")) and conkes > 0:
 		var conke = load("res://Scenes/Conke.tscn").instantiate()
@@ -123,7 +138,9 @@ func increase_score(increment):
 func decrease_health(decrement):
 	if health <= 0:
 		return
-		
+	
+	become_invincible()
+	
 	health -= decrement
 	health_changed.emit(health)
 
@@ -143,7 +160,10 @@ func increase_minteses(increment):
 
 func _on_respawn_timer_timeout():
 	reset()
-	visible = true
 
 func _on_boost_timer_timeout():
 	boost = Vector3(0, 0, 0)
+
+func _on_invincibility_timer_timeout():
+	invincible = false
+	visible = true
