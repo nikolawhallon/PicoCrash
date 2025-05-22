@@ -17,6 +17,8 @@ func _on_body_entered(body):
 		if origin != null:
 			origin.increase_score(1)
 			body.decrease_health(1)
+			var angle = atan2(body.position.x - position.x, body.position.z - position.z)
+			body.bounce_boost(angle)
 
 	velocity = speed * Vector3(0, 1, 0)
 	position.y += 2

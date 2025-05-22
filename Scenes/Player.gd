@@ -14,15 +14,18 @@ var boost = Vector3(0, 0, 0)
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var camera_model_angle = 0
 var score = 0
-var health = 3
+var health = 8
 var conkes = 0
 var bepises = 0
 var minteses = 0
 var invincible = false
 var flash_counter = 0
 
+func _ready():
+	reset()
+
 func reset():
-	health = 3
+	health = 8
 	conkes = 0
 	bepises = 0
 	minteses = 0
@@ -50,7 +53,7 @@ func _physics_process(delta):
 			visible = !visible
 			flash_counter = 0
 
-	if Input.is_action_just_pressed(str("p", player, "_fire_conke")) and conkes > 0:
+	if Input.is_action_just_pressed(str("p", player, "_fire_conke")) and conkes > 0 and !invincible:
 		var conke = load("res://Scenes/Conke.tscn").instantiate()
 		conke.velocity = conke.speed * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
 		conke.rotation.z = PI / 2
@@ -61,7 +64,7 @@ func _physics_process(delta):
 		conkes -= 1
 		emit_signal("conkes_changed", conkes)
 
-	if Input.is_action_just_pressed(str("p", player, "_fire_bepis")) and bepises > 0:
+	if Input.is_action_just_pressed(str("p", player, "_fire_bepis")) and bepises > 0 and !invincible:
 		var bepis = load("res://Scenes/Bepis.tscn").instantiate()
 		bepis.velocity = bepis.speed * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
 		bepis.rotation.z = PI / 2
@@ -115,6 +118,11 @@ func _physics_process(delta):
 			bepises = 9
 			emit_signal("conkes_changed", conkes)
 			emit_signal("bepises_changed", bepises)
+		
+		if collider.is_in_group("Player"):
+			var angle = atan2(collider.position.x - position.x, collider.position.z - position.z)
+			bounce_boost(angle + PI)
+			collider.bounce_boost(angle)
 			
 	# move and reposition the camera w.r.t. the player's position
 	if Input.is_action_pressed(str("p", player, "_l")):
@@ -127,6 +135,10 @@ func _physics_process(delta):
 	var dx = global_position.x - $Camera3D.global_position.x
 	var dz = global_position.z - $Camera3D.global_position.z
 	$Camera3D.rotation.y = -atan2(dx, -dz)
+
+func bounce_boost(angle):
+	$BoostTimer.start()
+	boost = 2 * speed * Vector3(sin(angle), 0, cos(angle))
 
 func increase_score(increment):
 	if health <= 0:

@@ -68,4 +68,13 @@ transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 
 one_shot = true
 autostart = true
 
+[node name="Warning5" parent="." instance=ExtResource("5_m4wlv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 30)
+
+[node name="Warning6" parent="." instance=ExtResource("5_m4wlv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 10)
+
+[node name="Warning7" parent="." instance=ExtResource("5_m4wlv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -10)
+
 [connection signal="timeout" from="MintesTimer" to="." method="_on_mintes_timer_timeout"]
