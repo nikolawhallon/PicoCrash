@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://tvloi3cnfhdh"]
+[gd_scene load_steps=7 format=3 uid="uid://tvloi3cnfhdh"]
 
 [ext_resource type="Script" path="res://Scenes/PlayerSubViewport.gd" id="1_exba4"]
 [ext_resource type="PackedScene" uid="uid://b6vqynede46h" path="res://Scenes/Player.tscn" id="2_ex2rh"]
 [ext_resource type="LabelSettings" uid="uid://b2pxnop0iphr1" path="res://Resources/LabelSettings.tres" id="3_sut66"]
 [ext_resource type="Texture2D" uid="uid://dm36twtkw2t64" path="res://Assets/conke_icon.png" id="4_pl04s"]
 [ext_resource type="Texture2D" uid="uid://bkqtg1uf7lt87" path="res://Assets/bepis_icon.png" id="5_b2vk1"]
+[ext_resource type="Texture2D" uid="uid://coqnvraw2l84n" path="res://Assets/mintes_icon.png" id="5_rchg5"]
 
 [node name="PlayerSubViewport" type="SubViewportContainer"]
 offset_right = 40.0
@@ -54,6 +55,15 @@ layout_mode = 2
 text = "0"
 label_settings = ExtResource("3_sut66")
 
+[node name="MintesTexture" type="TextureRect" parent="SubViewport/MarginContainer/AmmoContainer"]
+layout_mode = 2
+texture = ExtResource("5_rchg5")
+
+[node name="MintesLabel" type="Label" parent="SubViewport/MarginContainer/AmmoContainer"]
+layout_mode = 2
+text = "0"
+label_settings = ExtResource("3_sut66")
+
 [node name="BepisTexture" type="TextureRect" parent="SubViewport/MarginContainer/AmmoContainer"]
 layout_mode = 2
 texture = ExtResource("5_b2vk1")
@@ -66,4 +76,5 @@ label_settings = ExtResource("3_sut66")
 [connection signal="bepises_changed" from="SubViewport/Player" to="." method="_on_player_bepises_changed"]
 [connection signal="conkes_changed" from="SubViewport/Player" to="." method="_on_player_conkes_changed"]
 [connection signal="health_changed" from="SubViewport/Player" to="." method="_on_player_health_changed"]
+[connection signal="minteses_changed" from="SubViewport/Player" to="." method="_on_player_minteses_changed"]
 [connection signal="score_changed" from="SubViewport/Player" to="." method="_on_player_score_changed"]

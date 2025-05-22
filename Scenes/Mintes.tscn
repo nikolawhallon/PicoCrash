@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://c45hilhotqvtc"]
+
+[ext_resource type="ArrayMesh" uid="uid://cmg02p0hyv0kg" path="res://Assets/Mintes/mintes.obj" id="1_2xkmb"]
+[ext_resource type="Script" path="res://Scenes/Mintes.gd" id="1_dmbrw"]
+[ext_resource type="Texture2D" uid="uid://dyd05audnr0ke" path="res://Assets/Mintes/mintes_tex.png" id="2_3e6gw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_etj6g"]
+albedo_texture = ExtResource("2_3e6gw")
+texture_filter = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_yciyp"]
+points = PackedVector3Array(-1.25, -3.75046, -0.500204, -1.00015, -4, -0.500204, -1.25, -3.75046, 0.499931, -1.25, 3.99966, -0.500204, -0.500196, -3.75046, -1.25, -1.00015, -4, 0.499931, -0.500196, -4, -1.00015, -0.500196, -3.75046, 1.24997, -1.25, 3.99966, 0.499931, -1.00015, 4.25, -0.500204, -0.500196, 3.99966, -1.25, 0.499951, -3.75046, -1.25, -0.500196, -4, 0.999877, 0.499951, -4, -1.00015, 0.499951, -3.75046, 1.24997, -0.500196, 3.99966, 1.24997, -1.00015, 4.25, 0.499931, -0.500196, 4.25, -1.00015, 0.499951, 3.99966, -1.25, 1.25, -3.75046, -0.500204, 0.499951, -4, 0.999877, 0.999902, -4, -0.500204, 1.25, -3.75046, 0.499931, 0.499951, 3.99966, 1.24997, -0.500196, 4.25, 0.999877, 0.499951, 4.25, -1.00015, 1.25, 3.99966, -0.500204, 0.999902, -4, 0.499931, 1.25, 3.99966, 0.499931, 0.499951, 4.25, 0.999877, 0.999902, 4.25, -0.500204, 0.999902, 4.25, 0.499931)
+
+[node name="Mintes" type="Area3D" groups=["Mintes"]]
+script = ExtResource("1_dmbrw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_2xkmb")
+surface_material_override/0 = SubResource("StandardMaterial3D_etj6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_yciyp")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -4,6 +4,7 @@ signal score_changed(score)
 signal health_changed(health)
 signal conkes_changed(conkes)
 signal bepises_changed(bepises)
+signal minteses_changed(minteses)
 
 @export var player: int = 1
 
@@ -16,47 +17,61 @@ var score = 0
 var health = 3
 var conkes = 0
 var bepises = 0
+var minteses = 0
 
 func reset():
-	print("reset")
 	health = 3
 	conkes = 0
 	bepises = 0
+	minteses = 0
 	boost = Vector3(0, 0, 0)
 	emit_signal("score_changed", score)
 	emit_signal("health_changed", health)
 	emit_signal("conkes_changed", conkes)
 	emit_signal("bepises_changed", bepises)
-	
+	emit_signal("minteses_changed", bepises)
+		
 func _physics_process(delta):
 	if health <= 0:
 		return
 
 	if Input.is_action_just_pressed(str("p", player, "_fire_conke")) and conkes > 0:
 		var conke = load("res://Scenes/Conke.tscn").instantiate()
-		conke.global_position = global_position + 4 * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
 		conke.velocity = conke.speed * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
 		conke.rotation.z = PI / 2
 		conke.rotation.y = $ChunkyTank.rotation.y + PI / 2
 		conke.origin = self
 		get_tree().get_root().add_child(conke)
+		conke.global_position = global_position + 4 * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
 		conkes -= 1
 		emit_signal("conkes_changed", conkes)
 
 	if Input.is_action_just_pressed(str("p", player, "_fire_bepis")) and bepises > 0:
 		var bepis = load("res://Scenes/Bepis.tscn").instantiate()
-		bepis.global_position = global_position + 4 * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
 		bepis.velocity = bepis.speed * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
 		bepis.rotation.z = PI / 2
 		bepis.rotation.y = $ChunkyTank.rotation.y + PI / 2
 		bepis.origin = self
 		get_tree().get_root().add_child(bepis)
+		bepis.global_position = global_position + 4 * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
 		bepises -= 1
 		emit_signal("bepises_changed", bepises)
 
-	if Input.is_action_just_pressed(str("p", player, "_boost")):
+	if Input.is_action_just_pressed(str("p", player, "_boost_conke")) and minteses > 0 and conkes > 0:
 		$BoostTimer.start()
 		boost = 2 * speed * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
+		minteses -= 1
+		minteses_changed.emit(minteses)
+		conkes -= 1
+		conkes_changed.emit(conkes)
+
+	if Input.is_action_just_pressed(str("p", player, "_boost_bepis")) and minteses > 0 and bepises > 0:
+		$BoostTimer.start()
+		boost = 2 * speed * Vector3(sin($ChunkyTank.rotation.y), 0, cos($ChunkyTank.rotation.y))
+		minteses -= 1
+		minteses_changed.emit(minteses)
+		bepises -= 1
+		bepises_changed.emit(bepises)
 
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -118,6 +133,13 @@ func decrease_health(decrement):
 		visible = false
 		global_position.y += 4
 		$RespawnTimer.start()
+
+func increase_minteses(increment):
+	if health <= 0:
+		return
+		
+	minteses += increment
+	minteses_changed.emit(minteses)
 
 func _on_respawn_timer_timeout():
 	reset()

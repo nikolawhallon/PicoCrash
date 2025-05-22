@@ -16,3 +16,6 @@ func _on_player_bepises_changed(bepises):
 	
 func _on_player_health_changed(health):
 	$SubViewport/MarginContainer/StatsContainer/Health.text = str("HEALTH ", health)
+
+func _on_player_minteses_changed(minteses):
+	$SubViewport/MarginContainer/AmmoContainer/MintesLabel.text = str(minteses)

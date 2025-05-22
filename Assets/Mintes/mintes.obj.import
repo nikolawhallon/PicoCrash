@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cmg02p0hyv0kg"
+path="res://.godot/imported/mintes.obj-852b5ffb16a769e3fd5a5214d02bc78d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mintes.obj-852b5ffb16a769e3fd5a5214d02bc78d.mesh"]
+
+source_file="res://Assets/Mintes/mintes.obj"
+dest_files=["res://.godot/imported/mintes.obj-852b5ffb16a769e3fd5a5214d02bc78d.mesh", "res://.godot/imported/mintes.obj-852b5ffb16a769e3fd5a5214d02bc78d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

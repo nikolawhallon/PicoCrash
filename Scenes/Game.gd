@@ -1,5 +1,7 @@
 extends Node3D
 
+var rng = RandomNumberGenerator.new()
+
 func _ready():
 	for i in 11:
 		var warning = load("res://Scenes/Warning.tscn").instantiate()
@@ -104,6 +106,17 @@ func _ready():
 		p4_sub_viewport.get_node("SubViewport").get_node("Player").global_position = Vector3(10, 2, 5)
 		p4_sub_viewport.position = Vector2(320, 240)
 		add_child(p4_sub_viewport)
-	
+		
 func _process(delta):
 	pass
+
+func _on_mintes_tree_exited():
+	$MintesTimer.start()
+
+func _on_mintes_timer_timeout():
+	var mintes = load("res://Scenes/Mintes.tscn").instantiate()
+	mintes.position.z = rng.randf_range(-40.0, 40.0)
+	mintes.position.y = 5
+	mintes.position.x = rng.randf_range(-40.0, 40.0)
+	mintes.tree_exited.connect(_on_mintes_tree_exited)
+	add_child(mintes)
